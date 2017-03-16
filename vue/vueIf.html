@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../css/vue.css">
+    <script src="../jsLib/vue.min.js"></script>
+</head>
+<body>
+
+<!--
+v-if 指令
+在元素 和 template 中使用 v-if 指令：
+-->
+<div id="app">
+    <p v-if="seen">现在你看到我了</p>
+    <template v-if="ok">
+        <h1>菜鸟教程</h1>
+        <p>学的不仅是技术，更是梦想！</p>
+        <p>哈哈啥，打字辛苦啊！！！</p>
+    </template>
+</div>
+
+<!--
+v-else
+可以用 v-else 指令给 v-if 添加一个 "else" 块：
+-->
+<div id="app1">
+    <div v-if="Math.random() > 0.5">
+        Sorry
+    </div>
+    <div v-else>
+        Not sorry
+    </div>
+</div>
+
+<!--
+v-else-if
+v-else-if 在 2.1.0 新增，顾名思义，用作 v-if 的 else-if 块。可以链式的多次使用：
+-->
+<div v-if="type === 'A'">
+    A
+</div>
+<div v-else-if="type === 'B'">
+    B
+</div>
+<div v-else-if="type === 'C'">
+    C
+</div>
+<div v-else>
+    Not A/B/C
+</div>
+
+<!--
+v-show
+我们也可以使用 v-show 指令来根据条件展示元素：
+v-show 指令
+<h1 v-show="ok">Hello!</h1>
+
+尝试一下 »
+注意: v-show 不支持 <template> 语法。
+-->
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            seen: true,
+            ok: true
+        }
+    })
+
+    new Vue({
+        el: '#app1'
+    })
+
+    new Vue({
+        el: '#app',
+        data: {
+            type: 'C'
+        }
+    })
+
+</script>
+
+</body>
+</html>

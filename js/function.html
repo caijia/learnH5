@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS function</title>
+
+    <script>
+
+        'use strict';
+
+        //JavaScript的函数可以嵌套
+        function foo() {
+            var x = 1;
+            function bar() {
+                var x = 'A';
+                alert('x in bar() = ' + x); // 'A'
+            }
+            alert('x in foo() = ' + x); // 1
+            bar();
+        }
+
+        function getAge() {
+            var y = new Date().getFullYear();
+            return y - this.birth;
+        }
+
+        var xiaoming = {
+            name: '小明',
+            birth: 1990,
+            age: getAge
+        };
+
+        xiaoming.age(); // 25, 正常结果
+//        getAge(); // NaN
+        var age = getAge.apply(xiaoming, []);
+        document.write(age)
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

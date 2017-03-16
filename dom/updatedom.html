@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ol id="test-list">
+    <li class="lang">Scheme</li>
+    <li class="lang">JavaScript</li>
+    <li class="lang">Python</li>
+    <li class="lang">Ruby</li>
+    <li class="lang">Haskell</li>
+</ol>
+
+<script>
+
+    var ol = document.getElementById('test-list');
+    var list = ol.getElementsByTagName('li');
+    for (var i = 0; i < list.length; i++) {
+        for (var j = i + 1; j < list.length; j++) {
+            if (list[i].innerHTML > list[j].innerHTML) {
+                var temInnerHTML = list[i].innerHTML;
+                list[i].innerHTML = list[j].innerHTML;
+                list[j].innerHTML = temInnerHTML;
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

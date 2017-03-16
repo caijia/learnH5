@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- HTML结构 -->
+<ul id="test-list">
+    <li>JavaScript</li>
+    <li>Swift</li>
+    <li>HTML</li>
+    <li>ANSI C</li>
+    <li>CSS</li>
+    <li>DirectX</li>
+</ul>
+<script>
+
+    //把与Web开发技术不相关的节点删掉
+    var ul = document.getElementById('test-list');
+    var liArray = ul.getElementsByTagName('li');
+    for (var i = 0; i < liArray.length; i++) {
+        var child = liArray[i];
+        if (child.innerHTML == 'Swift' || child.innerHTML == 'DirectX' || child.innerHTML == 'ANSI C') {
+            var parent = child.parentElement;
+            parent.removeChild(child);
+        }
+    }
+
+    (function () {
+        var
+            arr, i,
+            t = document.getElementById('test-list');
+        if (t && t.children && t.children.length === 3) {
+            arr = [];
+            for (i = 0; i < t.children.length; i ++) {
+                arr.push(t.children[i].innerText);
+            }
+            if (arr.toString() === ['JavaScript', 'HTML', 'CSS'].toString()) {
+                alert('测试通过!');
+            }
+            else {
+                alert('测试失败: ' + arr.toString());
+            }
+        }
+        else {
+            alert('测试失败!');
+        }
+    })();
+
+</script>
+</body>
+</html>

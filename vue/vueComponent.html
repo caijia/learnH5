@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jsLib/vue.min.js"></script>
+    <link href="../css/vue.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<!--
+全局组件
+所有实例都能用全局组件。
+-->
+<div id="app">
+    <runoob></runoob>
+</div>
+
+<script>
+    // 注册
+    Vue.component('runoob', {
+        template: '<h1>自定义组件!</h1>'
+    })
+    // 创建根实例
+    new Vue({
+        el: '#app'
+    })
+</script>
+
+<!--
+局部组件
+我们也可以在实例选项中注册局部组件，这样组件只能在这个实例中使用：
+-->
+
+<div id="app1">
+    <runoob></runoob>
+</div>
+
+<script>
+    var Child = {
+        template: '<h1>自定义组件!</h1>'
+    }
+
+    // 创建根实例
+    new Vue({
+        el: '#app1',
+        components: {
+            // <runoob> 将只在父模板可用
+            'runoob': Child
+        }
+    })
+</script>
+
+<!--
+Prop
+prop 是父组件用来传递数据的一个自定义属性。
+父组件的数据需要通过 props 把数据传给子组件，子组件需要显式地用 props 选项声明 "prop"：
+-->
+<div id="app3">
+    <child message="hello!"></child>
+</div>
+
+<script>
+    // 注册
+    Vue.component('child', {
+        // 声明 props
+        props: ['message'],
+        // 同样也可以在 vm 实例中像 “this.message” 这样使用
+        template: '<span>{{ message }}</span>'
+    })
+    // 创建根实例
+    new Vue({
+        el: '#app3'
+    })
+</script>
+
+</body>
+</html>

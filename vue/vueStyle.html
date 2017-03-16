@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jsLib/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/vue.css" />
+</head>
+<body>
+
+<div id="app">
+    <div v-bind:class="{ active: isActive }"></div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            isActive: true
+        }
+    })
+</script>
+
+<!--
+我们也可以在对象中传入更多属性用来动态切换多个 class 。
+-->
+<div id="app1">
+    <div class="static"
+         v-bind:class="{ active: isActive, 'text-danger': hasError }">
+    </div>
+</div>
+
+<!--
+以上实例 div class 为：
+<div class="static active text-danger"></div>
+-->
+
+<script>
+    new Vue({
+        el: '#app1',
+        data: {
+            isActive: true,
+            hasError:true
+        }
+    })
+</script>
+
+<!--
+实例 3 与 实例 2 的渲染结果是一样的。
+此外，我们也可以在这里绑定返回对象的计算属性。这是一个常用且强大的模式：
+-->
+<div id="app2">
+    <div v-bind:class="classObject"></div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app2',
+        data: {
+            isActive: true,
+            error: null
+        },
+        computed: {
+            classObject: function () {
+                return {
+                    active: this.isActive && !this.error,
+                    'text-danger': this.error
+                }
+            }
+        }
+    })
+</script>
+
+<!--
+我们可以把一个数组传给 v-bind:class ，实例如下：
+-->
+<div id="app3">
+    <div v-bind:class="[activeClass, errorClass]"></div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app3',
+        data: {
+            activeClass: 'active',
+            errorClass: 'text-danger'
+        }
+    })
+</script>
+
+<!--
+我们还可以使用三元表达式来切换列表中的 class ：
+-->
+<div id="app4">
+    <div v-bind:class="[errorClass ,isActive ? activeClass : '']"></div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app4',
+        data: {
+            isActive: true,
+            activeClass: 'active',
+            errorClass: 'text-danger'
+        }
+    })
+</script>
+
+
+<!--
+我们可以在 v-bind:style 直接设置样式：
+-->
+<div id="app5">
+    <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">菜鸟教程</div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app5',
+        data: {
+            activeColor: 'green',
+            fontSize: 30
+        }
+    })
+</script>
+
+
+<!--
+也可以直接绑定到一个样式对象，让模板更清晰：
+-->
+<div id="app6">
+    <div v-bind:style="styleObject">菜鸟教程</div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app6',
+        data: {
+            styleObject: {
+                color: 'green',
+                fontSize: '30px'
+            }
+        }
+    })
+</script>
+
+<!--
+v-bind:style 可以使用数组将多个样式对象应用到一个元素上：
+-->
+<div id="app7">
+    <div v-bind:style="[baseStyles, overridingStyles]">菜鸟教程</div>
+</div>
+<script>
+    new Vue({
+        el: '#app7',
+        data: {
+            baseStyles: {
+                color: 'green',
+                fontSize: '30px'
+            },
+            overridingStyles: {
+                'font-weight': 'bold'
+            }
+        }
+    })
+</script>
+
+
+</body>
+</html>

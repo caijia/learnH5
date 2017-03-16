@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过渡</title>
+    <script src="../jsLib/vue.min.js"></script>
+    <link href="../css/vue.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div v-if="show" transition="expand">hello</div>
+<div id="app" v-if="show" :transition="transitionName">hello</div>
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            show: true,
+            transitionName: 'fade'
+        }
+    })
+</script>
+</body>
+</html>

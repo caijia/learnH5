@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>管家</title>
+    <script src="../jsLib/vue.min.js"></script>
+    <link rel="stylesheet" href="../css/vue.css"/>
+</head>
+<body>
+
+<!--文本插值-->
+<div id="app">
+    <p>{{ message }}</p>
+</div>
+
+<!--使用 v-html 指令用于输出 html 代码-->
+<div id="app1">
+    <div v-html="message"></div>
+</div>
+
+<!--HTML 属性中的值应使用 v-bind 指令。
+以下实例判断 class1 的值，如果为 true 使用 class1 类的样式，否则不使用该类：
+v-model  v-bind:class="{'class1': class1}
+-->
+<div id="app2">
+    <label for="r1">修改颜色</label><input type="checkbox" v-model="class1" id="r1">
+    <br><br>
+    <div v-bind:class="{'class1': class1}">
+        directiva v-bind:class
+    </div>
+</div>
+
+<!--
+Vue.js 都提供了完全的 JavaScript 表达式支持。
+-->
+<div id="app3">
+    {{5+5}}<br>
+    {{ ok ? 'YES' : 'NO' }}<br>
+    {{ message.split('').reverse().join('') }}
+    <div v-bind:id="'list-' + id">菜鸟教程</div>
+</div>
+
+<!--
+指令是带有 v- 前缀的特殊属性。
+指令用于在表达式的值改变时，将某些行为应用到 DOM 上。如下例子：
+-->
+<div id="app4">
+    <p v-if="see">现在你看到我了</p>
+</div>
+
+<!--
+参数
+参数在指令后以冒号指明。例如， v-bind 指令被用来响应地更新 HTML 属性：
+-->
+<div id="app5">
+    <pre><a v-bind:href="url">菜鸟教程</a></pre>
+</div>
+
+<!--
+用户输入
+在 input 输入框中我们可以使用 v-model 指令来实现双向数据绑定：
+-->
+<div id="app6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+
+<!--
+按钮的事件我们可以使用 v-on 监听事件，并对用户的输入进行响应。
+以下实例在用户点击按钮后对字符串进行反转操作：
+-->
+<div id="app7">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">反转字符串</button>
+</div>
+
+<!--
+过滤器
+Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。由"管道符"指示, 格式如下：
+-->
+<!-- 在 v-bind 指令中 -->
+<div id="app8">
+    {{ message | capitalize }}
+</div>
+
+<!--
+过滤器可以串联：
+{{ message | filterA | filterB }}
+过滤器是 JavaScript 函数，因此可以接受参数：
+{{ message | filterA('arg1', arg2) }}
+这里，message 是第一个参数，字符串 'arg1' 将传给过滤器作为第二个参数， arg2 表达式的值将被求值然后传给过滤器作为第三个参数。
+-->
+
+<!--
+缩写
+v-bind 缩写
+Vue.js 为两个最为常用的指令提供了特别的缩写：
+
+<a v-bind:href="url"></a>
+<a :href="url"></a>
+
+v-on 缩写
+<a v-on:click="doSomething"></a>
+<a @click="doSomething"></a>
+
+-->
+
+
+<!--
+
+属性与方法
+每个 Vue 实例都会代理其 data 对象里所有的属性：
+var data = { a: 1 }
+var vm = new Vue({
+  data: data
+})
+vm.a === data.a // -> true
+// 设置属性也会影响到原始数据
+vm.a = 2
+data.a // -> 2
+// ... 反之亦然
+data.a = 3
+vm.a // -> 3
+-->
+
+<!--
+
+除了 data 属性， Vue 实例暴露了一些有用的实例属性与方法。这些属性与方法都有前缀 $，以便与代理的 data 属性区分。例如：
+var data = { a: 1 }
+var vm = new Vue({
+  el: '#example',
+  data: data
+})
+vm.$data === data // -> true
+vm.$el === document.getElementById('example') // -> true
+// $watch 是一个实例方法
+vm.$watch('a', function (newVal, oldVal) {
+  // 这个回调将在 `vm.a`  改变后调用
+})
+-->
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue.js!'
+        }
+    });
+
+    new Vue({
+        el: '#app1',
+        data: {
+            message: '<h1>菜鸟教程</h1>'
+        }
+
+    });
+
+    new Vue({
+        el: '#app2',
+        data:{
+            class1: false
+        }
+    });
+
+    new Vue({
+        el: '#app3',
+        data: {
+            ok: true,
+            message: 'RUNOOB',
+            id: 1
+        }
+    });
+
+    new Vue({
+        el:'#app4',
+        data:{
+            see:true
+        }
+
+    });
+
+    new Vue({
+
+        el:'#app5',
+        data:{
+            url: 'http://www.runoob.com'
+        }
+    });
+
+    new Vue({
+        el:'#app6',
+        data:{
+            message:'Runoob'
+        }
+    });
+
+    new Vue({
+        el:'#app7',
+        data:{
+            message:'Runoob'
+        },
+
+        methods:{
+            reverseMessage:function () {
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    });
+
+    new Vue({
+        el:'#app8',
+        data:{
+            message:'Runoob'
+        },
+
+        filters: {
+            capitalize: function (value) {
+                if (!value) return '';
+                value = value.toString();
+                return value.charAt(0).toUpperCase() + value.slice(1)
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

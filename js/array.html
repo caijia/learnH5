@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Array</title>
+
+    <script>
+
+        var arr = [1, 2];
+        //头部添加元素
+        arr.unshift('a', 'b');
+
+        //删除第一个元素
+        arr.shift();
+
+        arr.sort();
+        document.write(arr.toString());
+
+        var arr1 = ['Microsoft', 'Apple', 'Yahoo', 'AOL', 'Excite', 'Oracle'];
+        //从索引2开始删除3个元素,然后再添加两个元素: 返回删除的元素 ['Yahoo', 'AOL', 'Excite']
+        var strings = arr1.splice(2,3,'Google','Facebook');
+        document.write(strings.toString());
+        document.write(arr1.toString());
+        document.write('</br>');
+
+        var arr2 = ['A', 'B', 'C', 1, 2, 3];
+        var newArr2 = arr2.join('-');
+        document.write(newArr2.toString())
+    </script>
+</head>
+<body>
+
+</body>
+</html>

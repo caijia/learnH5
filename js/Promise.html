@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+</head>
+<body>
+
+<script>
+    function test(resolve, reject) {
+        var timeOut = Math.random() * 2;
+        setTimeout(function () {
+            if (timeOut < 1) {
+                resolve('200 OK');
+            }
+            else {
+                reject('timeout in ' + timeOut + ' seconds.');
+            }
+        }, timeOut * 1000);
+    }
+
+    var p1 = new Promise(test);
+    var p2 = p1.then(function (result) {
+        console.log('成功：' + result);
+    });
+    var p3 = p2.catch(function (reason) {
+        console.log('失败：' + reason);
+    });
+
+    new Promise(test).then(function (result) {
+        console.log('成功：' + result);
+    }).catch(function (reason) {
+        console.log('失败：' + reason);
+    });
+
+
+</script>
+
+<script>
+    //    除了串行执行若干异步任务外，Promise还可以并行执行异步任务。
+    var p1 = new Promise(function (resolve, reject) {
+        setTimeout(resolve, 500, 'P1');
+    });
+    var p2 = new Promise(function (resolve, reject) {
+        setTimeout(resolve, 600, 'P2');
+    });
+    // 同时执行p1和p2，并在它们都完成后执行then:
+    Promise.all([p1, p2]).then(function (results) {
+        console.log(results); // 获得一个Array: ['P1', 'P2']
+    });
+
+</script>
+
+</body>
+</html>

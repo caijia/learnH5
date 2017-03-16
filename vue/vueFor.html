@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jsLib/vue.min.js"></script>
+    <link href="../css/vue.css" >
+
+</head>
+<body>
+
+<!--
+循环使用 v-for 指令。
+v-for 指令需要以 item in items 形式的特殊语法， items 是源数据数组并且 item 是数组元素迭代的别名。
+v-for 可以绑定数据到数组来渲染一个列表
+-->
+<div id="app">
+    <ol>
+        <li v-for="site in sites">
+            {{ site.name }}
+        </li>
+    </ol>
+</div>
+
+<!--
+模板中使用 v-for：
+-->
+<div id="app1">
+    <ul>
+        <template v-for="site in sites">
+            <li>{{ site.name }}</li>
+            <li>--------------</li>
+        </template>
+    </ul>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            sites: [
+                { name: 'Runoob' },
+                { name: 'Google' },
+                { name: 'Taobao' }
+            ]
+        }
+    })
+
+    new Vue({
+        el: '#app1',
+        data: {
+            sites: [
+                { name: 'Runoob' },
+                { name: 'Google' },
+                { name: 'Taobao' }
+            ]
+        }
+    })
+</script>
+
+<!--
+v-for 迭代对象
+v-for 可以通过一个对象的属性来迭代数据：
+
+你也可以提供第二个的参数为键名：
+
+
+
+
+
+
+-->
+
+<div id="app2">
+    <ul>
+        <li v-for="value in object">
+            {{ value }}
+        </li>
+    </ul>
+</div>
+
+<div id="app3">
+    <ul>
+        <li v-for="(value, key,index) in object">
+            {{ key }} : {{ value }}:{{index}}
+        </li>
+    </ul>
+</div>
+
+<script>
+    new Vue({
+        el: '#app2',
+        data: {
+            object: {
+                name: '菜鸟教程',
+                url: 'http://www.runoob.com',
+                slogan: '学的不仅是技术，更是梦想！'
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app3',
+        data: {
+            object: {
+                name: '菜鸟教程',
+                url: 'http://www.runoob.com',
+                slogan: '学的不仅是技术，更是梦想！'
+            }
+        }
+    })
+
+</script>
+
+<!--
+
+v-for 迭代整数
+v-for 也可以循环整数
+-->
+<div id="app4">
+    <ul>
+        <li v-for="n in 10">
+            {{ n }}
+        </li>
+    </ul>
+</div>
+<script>
+    new Vue({
+        el: '#app4'
+    })
+</script>
+</body>
+</html>

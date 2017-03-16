@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS h function</title>
+
+    <script>
+
+        //高阶函数，就是让函数的参数能够接收别的函数。
+        function add(x, y, f) {
+            return f(x) + f(y);
+        }
+
+        add(-5, 6, Math.abs); // 11
+
+        var arr = ['A', 'B', 'C'];
+        var r = arr.filter(function (element, index, self) {
+            console.log(element); // 依次打印'A', 'B', 'C'
+            console.log(index); // 依次打印0, 1, 2
+            console.log(self); // self就是变量arr
+            return true;
+        });
+
+
+        function sum(arr) {
+            return arr.reduce(function (x, y) {
+                return x * y;
+            });
+        }
+
+        var sum2 = sum([1, 2, 3, 4, 5]); // 15
+        document.write(sum2)
+
+
+        function count() {
+            var arr = [];
+            for (var i=0; i<3; i++) {
+                arr.push((function (n) {
+                    return n * n;
+                })(i));
+            }
+            document.write('i=' + i);
+            return arr;
+        }
+
+        var results = count();
+        var f1 = results[0];
+        var f2 = results[1];
+        var f3 = results[2];
+
+        document.write(f1+"--"+f2+"--"+f3)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

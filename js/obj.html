@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS obj</title>
+
+    <script>
+
+        //JavaScript的对象是动态类型，你可以自由地给一个对象添加或删除属性：
+
+        var xiaoming = {
+            name: '小明',
+            birth: 1990,
+            school: 'No.1 Middle School',
+            height: 1.70,
+            weight: 65,
+            score: null
+        };
+
+        xiaoming.father = 'caijia';
+        document.write(xiaoming.father);
+
+        //继续或者自己的属性
+        var exist = 'name' in xiaoming;
+
+        //自己的属性
+        var ownExist = xiaoming.hasOwnProperty('name');
+
+        document.write(exist+'--'+ownExist);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
