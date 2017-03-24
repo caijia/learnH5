@@ -98,7 +98,41 @@
         /**
          * 原型继承
          */
+        function Person(name,age) {
+            this.name = name;
+            this.age = age;
+        }
 
+        Person.prototype.hello = function () {
+            document.write('my name is '+this.name)
+        }
+
+        function ChildPerson(name,age) {
+            Person.call(this,name,age);
+        }
+        
+        function F() {
+
+        }
+
+        F.prototype = Person.prototype;
+        ChildPerson.prototype = new F();
+        ChildPerson.prototype.constructor = ChildPerson;
+
+        ChildPerson.prototype.getAge = function () {
+            document.write("my age is " + this.age);
+        }
+
+        var childPerson = new ChildPerson('caijia', 25);
+        childPerson.hello()
+        childPerson.getAge()
+
+        function clone(child,parent) {
+            var F = function () {}
+            F.prototype = parent.prototype;
+            child.prototype = new F();
+            child.prototype.constructor = child;
+        }
 
         /**
          * class 继承

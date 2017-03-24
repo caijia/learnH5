@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function fn() {
+            var max = 10;
+            return function (x) {
+                if (x > max) {
+                    document.write('x = ' + x);
+                }
+            }
+        }
+
+        var fn = fn();
+        fn(13);
+
+    </script>
+</body>
+</html>
