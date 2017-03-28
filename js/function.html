@@ -30,6 +30,42 @@
             age: getAge
         };
 
+        function Person(name) {
+            this.name = name;
+            this.age = '19';
+        }
+        const person = new Person('caijia');
+
+        function Man() {
+            Person.call(this)
+        }
+//
+        function F() {
+
+        }
+
+        F.prototype = Person.prototype;
+        Man.prototype = new F();
+        Man.prototype.constructor = Man;
+
+        Man.prototype.speak = function () {
+            document.write('speak ' + this.age)
+        };
+//
+        const man = new Man();
+
+        //验证原型
+        let b = man.__proto__ === Man.prototype; // true
+        let b1 = man.__proto__.__proto__ === Person.prototype; // true
+
+        // 验证继承关系:
+        let b2 = man instanceof Man; // true
+        let b3 = man instanceof Person; // true
+
+        document.write(b1 +"-"+ b2 +"-"+ b3 +"-"+ b);
+        man.speak();
+
+
         xiaoming.age(); // 25, 正常结果
 //        getAge(); // NaN
         var age = getAge.apply(xiaoming, []);

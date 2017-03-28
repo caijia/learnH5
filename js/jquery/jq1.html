@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../jsLib/jquery.js"></script>
+</head>
+
+</head>
+<body>
+
+<script>
+
+    //*************************jQuery 选择器*************************//
+    $(document).ready(function () {
+        $("#button1").click(function () {
+            $(this).hide();
+        });
+    });
+
+    // 点击id为'hideP'的元素  隐藏所有p元素
+    $(document).ready(function () {
+        $("#hideP").click(function () {
+            $("p").hide();
+        });
+    });
+
+    //点击button 隐藏class = 'test'的所有元素
+    $(document).ready(function () {
+        $("button").click(function () {
+            $(".test").hide();
+        });
+    });
+
+    //点击button 隐藏id = 'test'的所有元素
+    $(document).ready(function () {
+        $("button").click(function () {
+            $("#test").hide();
+        });
+    });
+
+
+    //*************************jQuery 事件*************************//
+    //点击p元素隐藏
+    $(document).ready(function(){
+        $("p").click(function(){
+            $(this).hide();
+        });
+    });
+
+    //双击p元素隐藏
+    $(document).ready(function(){
+        $("p").dblclick(function(){
+            $(this).hide();
+        });
+    });
+
+    //鼠标移动到 id = 'p1'元素上
+    $(document).ready(function(){
+        $("#p1").mouseenter(function(){
+            alert('您的鼠标移到了 id="p1" 的元素上!');
+        });
+    });
+
+    //鼠标离开 id = 'p1'元素
+    $(document).ready(function(){
+        $("#p1").mouseleave(function(){
+            alert("再见，您的鼠标离开了该段落。");
+        });
+    });
+
+
+
+</script>
+
+
+</body>
+</html>
